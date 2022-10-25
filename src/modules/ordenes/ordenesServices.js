@@ -12,9 +12,9 @@ class OrdenesServices {
     return resultado;
   };
 
-  getAllProductosService = async () => {
-    const productos = await this.productoDaos.getAllData();
-    return productos;
+  getAllOrdenesService = async () => {
+    const ordenes = await this.ordeneDaos.getAllData();
+    return ordenes;
   };
 
   getOrdenByIdServices = async (id) => {
@@ -22,27 +22,11 @@ class OrdenesServices {
     return ordenById;
   };
 
-  delteProductoByIdService = async (id) => {
-    const prodcutoEliminado = await this.productoDaos.deleteById(id)
-    return prodcutoEliminado;
+  delteOrdeneByIdService = async (id) => {
+    const ordenEliminado = await this.ordeneDaos.deleteById(id)
+    return ordenEliminado;
   };
 
-  updateProductoByIdService = async (id, producto) => {
-    const idProductoActualizado = await this.productoDaos.upDate(id, producto);
-    return idProductoActualizado;
-  };
-
-  getProductosByCategoria = async (categoria) => {
-    const productosCategoria = await this.productoDaos.getProductosByCategoria(categoria)
-    return productosCategoria;
-  }
-
-
-  getImagenProductosById = async (id) => {
-    const producto = await this.productoDaos.getById(id);
-    const imagenById = producto.fotoUrlProducto;
-    return imagenById;
-  }
 };
 
 module.exports = OrdenesServices;

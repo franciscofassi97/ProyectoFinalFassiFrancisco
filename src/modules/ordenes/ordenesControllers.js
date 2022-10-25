@@ -1,6 +1,6 @@
 const OrdenesServices = require('./ordenesServices');
 
-// const ProductoServices = new ProductosServices();
+// const OrdeneServices = new OrdenesServices();
 
 class OrdenesController {
 
@@ -11,7 +11,7 @@ class OrdenesController {
   guardarOrdenController = async (req, res) => {
     try {
       const newOrden = {
-        productos: [{ productoNombre: "Algun Producto", cantidad: 3 }, { productoNombre: "Otro Producto", cantidad: 2 }],
+        ordens: [{ ordenNombre: "Algun Ordene", cantidad: 3 }, { ordenNombre: "Otro Ordene", cantidad: 2 }],
         emailUsuario: 'emailUsuario'
       };
 
@@ -29,19 +29,19 @@ class OrdenesController {
     };
   };
 
-  getProductosController = async (req, res) => {
+  getOrdenesController = async (req, res) => {
     try {
       const id = req.params.id;
       if (id) {
-        const producto = await this.ProductoServices.getProductoByIdServices(id);
-        if (producto) return res.status(200).json(producto);
-        else return res.status(404).json({ message: "No se encontro el producto" });
+        const orden = await this.OrdeneServices.getOrdeneByIdServices(id);
+        if (orden) return res.status(200).json(orden);
+        else return res.status(404).json({ message: "No se encontro el orden" });
 
       } else {
-        const productos = await this.ProductoServices.getAllProductosService();
-        if (productos) return res.status(200).json(productos);
+        const ordens = await this.OrdeneServices.getAllOrdenesService();
+        if (ordens) return res.status(200).json(ordens);
 
-        else return res.status(404).json({ message: "No se encontraron productos" });
+        else return res.status(404).json({ message: "No se encontraron ordens" });
       }
     } catch (error) {
       res.status(500).json({
@@ -51,13 +51,13 @@ class OrdenesController {
     };
   };
 
-  borrarProductoController = async (req, res) => {
+  borrarOrdeneController = async (req, res) => {
     try {
       const id = req.params.id;
       if (id) {
-        const productoEliminado = await this.ProductoServices.delteProductoByIdService(id);
-        if (productoEliminado) return res.status(200).json(productoEliminado);
-        else return res.status(404).json({ message: "No se encontro el producto" });
+        const ordenEliminado = await this.OrdeneServices.delteOrdeneByIdService(id);
+        if (ordenEliminado) return res.status(200).json(ordenEliminado);
+        else return res.status(404).json({ message: "No se encontro el orden" });
       };
     } catch (error) {
       res.status(500).json({
@@ -66,69 +66,6 @@ class OrdenesController {
       });
     }
   };
-
-  actualizarProductoByIdController = async (req, res) => {
-    try {
-      const id = req.params.id;
-      const { nombre, descripcion, codigo, fotoUrl, precio, stock } = req.body;
-
-      if (id) {
-        const idProductoActualizado = await this.ProductoServices.updateProductoByIdService(
-          id,
-          {
-            nombre,
-            descripcion,
-            codigo,
-            fotoUrl,
-            precio,
-            stock
-          });
-
-        if (idProductoActualizado) return res.status(200).json(id);
-        else return res.status(404).json({ message: "No se encontro el producto" });
-      }
-    } catch (error) {
-      res.status(500).json({
-        success: false,
-        error: error.message,
-      });
-    };
-  };
-
-  getProductosByCategoriaController = async (req, res) => {
-    try {
-      const categoria = req.params.categoria;
-
-      if (categoria) {
-        const productosCategoria = await this.ProductoServices.getProductosByCategoria(categoria);
-        if (productosCategoria) return res.status(200).json(productosCategoria);
-        else return res.status(404).json({ message: "No se encontro el producto" });
-      };
-    } catch (error) {
-      res.status(500).json({
-        success: false,
-        error: error.message,
-      });
-    };
-  };
-
-
-  getImagenProductosById = async (req, res) => {
-    try {
-      const productoId = req.params.productoId;
-
-      if (productoId) {
-        const imagen = await this.ProductoServices.getImagenProductosById(productoId);
-        if (imagen) return res.status(200).json({ imagen });
-        else return res.status(404).json({ message: "No se encontro el producto" });
-      };
-    } catch (error) {
-      res.status(500).json({
-        success: false,
-        error: error.message,
-      });
-    };
-  }
 
 }
 module.exports = OrdenesController;

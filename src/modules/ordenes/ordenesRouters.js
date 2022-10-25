@@ -8,14 +8,7 @@ const ordenesController = new OrdenesController();
 
 router.post('/', ordenesController.guardarOrdenController);
 
-// router.get('/:id?', productosController.getProductosController);
+router.get('/:id?', ordenesController.getOrdenesController);
 
-// router.get('/categoria/:categoria', productosController.getProductosByCategoriaController);
-
-// router.get('/images/:productoId', productosController.getImagenProductosById)
-
-
-// router.delete('/:id', productosController.borrarProductoController);
-
-// router.put('/:id', productosController.actualizarProductoByIdController);
+router.delete('/:id', ordenesController.borrarOrdeneController);
 module.exports = router;

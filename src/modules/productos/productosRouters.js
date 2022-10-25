@@ -19,4 +19,5 @@ router.get('/images/:productoId', productosController.getImagenProductosById)
 router.delete('/:id', productosController.borrarProductoController);
 
 router.put('/:id', productosController.actualizarProductoByIdController);
+
 module.exports = router;

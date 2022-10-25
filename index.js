@@ -1,10 +1,15 @@
 const express = require('express');
-const { PORT } = require('./config/configIndex');
+const { PORT, MODO } = require('./config/configIndex');
 const cookieParser = require('cookie-parser');
 const app = express();
 
 const connectDB = require('./config/dataBaseConfig');
 connectDB();
+
+//Inicio servidor le paso app para sockets
+const { Server: HttpServer } = require('http');
+const httpServer = new HttpServer(app);
+
 
 //Middleware
 app.use(express.static("public"));
@@ -16,6 +21,9 @@ app.use(express.json());
 // require('./src/middlewares/autenticacion')(passport);
 
 
+//Incio sockets
+const io = require('./src/modules/sockets/socket');
+io(httpServer);
 
 
 
@@ -67,6 +75,22 @@ app.use(function (err, req, res, next) {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is runnig on port ${PORT}`)
-});
+if (MODO === "FORK") {
+
+  httpServer.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+
+} else {
+  console.log(`Procesos: ${processID}, - isMaster: ${cluster.isMaster}, - numeroCpu: ${numeroCpu}`);
+  if (cluster.isPrimary) {
+    for (let i = 0; i < numeroCpu; i++) {
+      cluster.fork()
+    }
+    cluster.on('exit', (worker) => {
+      console.log(`Proceso ${worker.process.pid} terminado`);
+    })
+  } else {
+    httpServer.listen(PORT, () => { console.log(`Server is running on port ${PORT}`); });
+  }
+}

@@ -10,6 +10,6 @@ module.exports = {
   TOKEN: process.env.TOKEN,
   TWILIO_NUMBER_FROM: process.env.TWILIO_NUMBER_FROM,
   TWILIO_NUMBER_TO: process.env.TWILIO_NUMBER_TO,
-  MODOFORK: process.env.MODOFORK,
+  MODO: process.env.MODO,
   TOKEN_SECRETO: process.env.TOKEN_SECRETO
 };
