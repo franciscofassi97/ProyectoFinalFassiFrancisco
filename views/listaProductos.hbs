@@ -1,0 +1,41 @@
+
+
+<h1>Lista de Productos</h1>
+
+<div class="box">
+    <div id="divErrors"></div>
+    <table id="tableProductos">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Categoria</th>
+                <th>Codigo</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Foto</th>
+            </tr>
+        </thead>
+        <tbody id="tbodyProductos">
+            {{#each productos}}
+            <tr>
+                <td>{{nombre}}</td>
+                <td>{{descripcion}}</td>
+                 <td><a href="/api/productos/categoria/{{categoria}}"><span>{{categoria}}</span></a>
+                </td>
+                <td>{{codigo}}</td>
+                <td>{{precio}}</td>
+                <td>{{stock}}</td>
+                
+                <td><img src="{{fotoUrlProducto}}" width="150"/></td>
+                <td>
+                    <button onclick="agregarAlCarrito('{{_id}}')"> Agregar </button>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+<div class="box">
+    <h2>No hay productos registrados</h2>
+</div>

@@ -1,0 +1,17 @@
+
+<section>
+	<h1>Iniciar Sesion</h1>
+	<div class="box">
+		{{!-- <form action="/api/productos/create" method="post"> --}}
+			<form action="/api/usuarios/iniciarSesion" enctype="application/x-www-form-urlencoded" method="post" >
+				<label for="email">Correo Electronico</label>
+				<input type="text" name="email" placeholder="Ingrese nombre" id="email">
+				<label for="password">Password</label>
+				<input type="password" name="password" placeholder="Ingrese nombre" id="password">
+				<input type="submit" value="Iniciar">
+			</form>
+			<button><a href="/api/usuarios/registro">Registrarse</a></button>
+			<br>
+	</div>
+</section>
+
