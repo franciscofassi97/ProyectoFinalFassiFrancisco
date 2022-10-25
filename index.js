@@ -1,6 +1,6 @@
 const express = require('express');
 const { PORT } = require('./config/configIndex');
-const passport = require('passport');
+const cookieParser = require('cookie-parser');
 const app = express();
 
 const connectDB = require('./config/dataBaseConfig');
@@ -8,6 +8,7 @@ connectDB();
 
 //Middleware
 app.use(express.static("public"));
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 

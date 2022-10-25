@@ -33,7 +33,7 @@ class ProductosController {
     };
   };
 
-  getProductosController = async (err, req, res, next) => {
+  getProductosController = async (req, res) => {
     try {
       const id = req.params.id;
       if (id) {

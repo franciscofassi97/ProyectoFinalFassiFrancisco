@@ -47,8 +47,10 @@ class UsuariosController {
         }
       );
 
-      usuario.token = token;
-      return res.redirect('/api/productos')
+      res.cookie("token", token, {
+        httpOnly: true
+      })
+      return res.redirect('/api/productos/')
     } catch (error) {
       res.status(500).json({
         success: false,
