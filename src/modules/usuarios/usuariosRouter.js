@@ -8,6 +8,7 @@ const UsuariosController = require('./usuariosControllers');
 const usuarioConstroller = new UsuariosController();
 
 router.post('/registro', usuarioConstroller.guardarUsuarioController)
+router.get('/registro', usuarioConstroller.getVistaRegistro)
 
 router.post('/iniciarSesion', usuarioConstroller.iniciarSesionController)
 

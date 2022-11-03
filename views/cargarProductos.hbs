@@ -1,0 +1,61 @@
+{{#if producto}}
+  <div>
+  <form id="put" action="/api/productos/{{producto._id}}" enctype="multipart/form-data" method="post" >
+       			
+				<label for="nombre">nombre</label>
+				<input type="text" name="nombre" value={{producto.nombre}}>
+        <br>
+        <label for="descripcion">descripcion</label>
+				<input type="text" name="descripcion" value={{producto.descripcion}}>
+        <br>
+        <label for="codigo">codigo</label>
+				<input type="text" name="codigo" value={{producto.codigo}}>
+        <br>
+        <label for="precio">precio</label>
+				<input type="text" name="precio" value={{producto.precio}}>
+  
+        <br>   
+        <label for="stock">stock</label>
+				<input type="text" name="stock" value={{producto.stock}}>
+        <br>
+        <label for="categoria">categoria</label>
+				<input type="text" name="categoria" value={{producto.categoria}}>
+        <br>
+        <label for="fotoUrlProducto">Imagen</label>
+        <input type="file"  name="fotoUrlProducto" value={{producto.fotoUrlProducto}}>
+        <br>
+				<input type="submit" value="guardar">
+	  </form>
+			<button><a href="/api/productos">Volver</a></button>
+</div>
+{{else}}
+  <div>
+  <form action="/api/productos" enctype="multipart/form-data" method="post" >
+				<label for="nombre">nombre</label>
+				<input type="text" name="nombre" placeholder="Ingrese nombre">
+        <br>
+        <label for="descripcion">descripcion</label>
+				<input type="text" name="descripcion" placeholder="Ingrese descripcion">
+        <br>
+        <label for="codigo">codigo</label>
+				<input type="text" name="codigo" placeholder="Ingrese codigo">
+        <br>
+        <label for="precio">precio</label>
+				<input type="text" name="precio" placeholder="Ingrese precio">
+  
+        <br>   
+        <label for="stock">stock</label>
+				<input type="text" name="stock" placeholder="Ingrese stock">
+        <br>
+        <label for="categoria">categoria</label>
+				<input type="text" name="categoria" placeholder="Ingrese categoria">
+        <br>
+        <label for="fotoUrlProducto">Imagen</label>
+        <input type="file"  name="fotoUrlProducto" placeholder="Ingrese Imagen">
+        <br>
+				<input type="submit" value="guardar">
+			</form>
+			<button><a href="/api/productos">Volver</a></button>
+</div>
+{{/if}}
+

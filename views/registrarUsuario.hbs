@@ -1,0 +1,23 @@
+
+<section>
+	<h1>Registar Usuario</h1>
+	<div class="box">
+		{{!-- <form action="/api/productos/create" method="post"> --}}
+			<form action="/api/usuarios/registro" enctype="application/x-www-form-urlencoded" method="post" >
+				<label for="email">Correo Electronico</label>
+				<input type="text" name="email" placeholder="Ingrese nombre" id="email">
+				<label for="password">Password</label>
+				<input type="password" name="password" placeholder="Ingrese nombre" id="password">
+				<label for="password">Confirmar Password</label>
+				<input type="password" name="passwordValidacion" placeholder="Ingrese password" id="password">
+				<label for="numeroTelefono">Numero Telefono</label>
+				<input type="text" name="numeroTelefono" placeholder="Ingrese Numero telefono">
+				<label for="direccion">Direccion</label>
+				<input type="text" name="direccion" placeholder="Ingrese Numero direccion">
+				<input type="submit" value="Registrarse">
+			</form>
+			<button><a href="/api/usuarios/iniciarSesion">Volver</a></button>
+			<br>
+	</div>
+</section>
+

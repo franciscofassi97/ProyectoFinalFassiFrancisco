@@ -1,5 +1,7 @@
 
 
+
+
 <h1>Lista de Productos</h1>
 
 <div class="box">
@@ -30,6 +32,9 @@
                 <td><img src="{{fotoUrlProducto}}" width="150"/></td>
                 <td>
                     <button onclick="agregarAlCarrito('{{_id}}')"> Agregar </button>
+                </td>
+                 <td>
+                    <button><a href="/api/productos/crear/{{_id}}">Modificar</a></button>
                 </td>
             </tr>
             {{/each}}

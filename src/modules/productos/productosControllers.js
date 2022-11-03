@@ -23,7 +23,9 @@ class ProductosController {
         categoria
       });
 
-      return res.status(200).json({ idProducto: id });
+      if (id) res.status(200).redirect('/api/productos')
+      else throw new Error(id);
+      // return res.status(200).json({ idProducto: id });
 
     } catch (error) {
       res.status(500).json({
@@ -73,8 +75,9 @@ class ProductosController {
 
   actualizarProductoByIdController = async (req, res) => {
     try {
+      console.log(req.params.id)
       const id = req.params.id;
-      const { nombre, descripcion, codigo, fotoUrl, precio, stock } = req.body;
+      const { nombre, descripcion, codigo, precio, stock, categoria } = req.body;
 
       if (id) {
         const idProductoActualizado = await this.ProductoServices.updateProductoByIdService(
@@ -85,7 +88,8 @@ class ProductosController {
             codigo,
             fotoUrl,
             precio,
-            stock
+            stock,
+            categoria
           });
 
         if (idProductoActualizado) return res.status(200).json(id);
@@ -135,6 +139,14 @@ class ProductosController {
         error: error.message,
       });
     };
+  };
+
+  getFormProductos = async (req, res) => {
+    if (req.params.id) {
+      const producto = await this.ProductoServices.getProductoByIdServices(req.params.id)
+      return res.render('cargarProductos', { producto })
+    }
+    res.render('cargarProductos')
   }
 
 }

@@ -6,6 +6,11 @@ const usuariosSchema = new mongoose.Schema(
   {
     email: { type: String, unique: true },
     password: { type: String },
+    direccion: { type: String },
+    numeroTelefono: { type: String }
+  },
+  {
+    timestamps: true
   }
 );
 

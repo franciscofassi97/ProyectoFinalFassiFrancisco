@@ -7,6 +7,7 @@ const verifyToken = require('../../middlewares/isAutenticated');
 
 const productosController = new ProductosController();
 
+router.get('/crear/:id?', productosController.getFormProductos);
 router.post('/', uploads.single("fotoUrlProducto"), productosController.guardarProductoController);
 
 router.get('/:id?', verifyToken, productosController.getProductosController);
@@ -18,6 +19,6 @@ router.get('/images/:productoId', productosController.getImagenProductosById)
 
 router.delete('/:id', productosController.borrarProductoController);
 
-router.put('/:id', productosController.actualizarProductoByIdController);
+router.post('/:id', productosController.actualizarProductoByIdController);
 
 module.exports = router;

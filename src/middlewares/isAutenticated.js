@@ -3,10 +3,8 @@ const { TOKEN_SECRETO } = require('../../config/configIndex');
 
 const verifyToken = (req, res, next) => {
   const token = req.cookies.token;
-  console.log(token);
-
   if (!token) {
-    return res.status(403).send("A token is required for authentication");
+    return res.redirect("/api/usuarios/iniciarSesion");
   }
   try {
     const decoded = jwt.verify(token, TOKEN_SECRETO);

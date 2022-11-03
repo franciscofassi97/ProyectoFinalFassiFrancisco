@@ -10,11 +10,19 @@ class UsuariosController {
 
   guardarUsuarioController = async (req, res) => {
     try {
-      const { email, password, passwordValidacion } = req.body
+      const { email, password, passwordValidacion, direccion, numeroTelefono } = req.body
 
-      const id = await this.UsuarioServices.guardarUsuarioService({ email, password, passwordValidacion })
+      const id = await this.UsuarioServices.guardarUsuarioService(
+        {
+          email,
+          password,
+          passwordValidacion,
+          direccion,
+          numeroTelefono
+        });
 
-      return res.status(200).json({ idUsuario: id });
+      if (id) return res.status(200).redirect('/api/usuarios/iniciarSesion')
+      else throw new Error(id);
 
     } catch (error) {
       res.status(500).json({
@@ -29,15 +37,6 @@ class UsuariosController {
       const { email, password } = req.body
 
       const usuario = await this.UsuarioServices.inciarSesionService(email, password)
-
-      // const tokenPayload = { id: usuario._id, email: usuario.email };
-
-      // jwt.sign(tokenPayload, TOKEN_SECRETO, { expiresIn: 3600 }, (error, token) => {
-      //   req.headers.authorization = `Bearer ${token}`;
-      //   // return res.status(200).json({ succes: true, token: `Bearer ${token}` });
-      //   console.log(req.headers.authorization);
-      //   return res.redirect('/api/productos')
-      // });
 
       const token = jwt.sign(
         { usuario: usuario._id, email: usuario.email },
@@ -162,7 +161,12 @@ class UsuariosController {
         error: error.message,
       });
     };
-  }
+  };
+
+
+  getVistaRegistro = (_, res) => {
+    res.render('registrarUsuario');
+  };
 
 }
 module.exports = UsuariosController;
